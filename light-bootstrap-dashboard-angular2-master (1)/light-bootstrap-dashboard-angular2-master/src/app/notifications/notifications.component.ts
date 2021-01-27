@@ -8,25 +8,18 @@ declare var $:any;
   styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent implements OnInit {
+  public tableData1: any;
 
   constructor() { }
 
   ngOnInit() {
   }
-  showNotification(from, align){
-      const type = ['','info','success','warning','danger'];
-
-      var color = Math.floor((Math.random() * 4) + 1);
-      $.notify({
-          icon: "pe-7s-gift",
-          message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-      },{
-          type: type[color],
-          timer: 1000,
-          placement: {
-              from: from,
-              align: align
-          }
-      });
+  showNotification(){
+    this.tableData1 = {
+      headerRow: [ 'Location code','location name', 'location Type'],
+      dataRows: [
+          ['1', 'Dakota Rice', 'Niger']
+      ]
+  };
   }
 }
