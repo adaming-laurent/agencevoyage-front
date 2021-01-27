@@ -7,8 +7,8 @@
                         <h4 class="title">Edit Profile</h4>
                     </div>
                     <div class="content">
-                        <form>
-                            <div class="row">
+                        <form (ngSubmit)="save()">
+                            <div class="row" >
                                 <!-- <div class="col-md-5">
                                     <div class="form-group">
                                         <label>Company (disabled)</label>
@@ -18,13 +18,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Nom</label>
-                                        <input type="text" class="form-control" placeholder="CustomerName">
+                                        <input type="text" class="form-control" placeholder="CHOPIN Frédéric" [(ngModel)]="customer.CustomerName" name="CustomerName">
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Adresse mail</label>
-                                        <input type="email" class="form-control" placeholder="Email">
+                                        <label>Adresse mail</label>
+                                        <input type="email" class="form-control" placeholder="angular@adaming.fr" [(ngModel)]="customer.Email" name="Email">
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Téléphone</label>
-                                        <input type="text" class="form-control" placeholder="PhoneNumber">
+                                        <input type="text" class="form-control" placeholder="600000000" [(ngModel)]="customer.PhoneNumber" name="PhoneNumber">
                                     </div>
                                 </div>
                             </div>
@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                             </div> -->
-                            <button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button>
+                            <button class="btn btn-info btn-fill pull-right">Update Profile</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
