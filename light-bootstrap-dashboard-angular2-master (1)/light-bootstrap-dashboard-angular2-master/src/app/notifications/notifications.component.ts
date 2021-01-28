@@ -19,9 +19,12 @@ export class NotificationsComponent implements OnInit {
   findAll() {
     this.locationService.findAll().subscribe(data => { this.locations = data });
   }
-  // getOneLocation(id){
-  //   this.userService.findOne(id).subscribe(data => )
-  //}
+
+  getOneLocation(id: number) {
+    this.locationService.findOne(id).subscribe(l => {
+      this.location = l;
+    })
+  }
   deleteLocation(location) {
     this.locationService.delete(location.idLocation).subscribe(
       () => { this.findAll() }
