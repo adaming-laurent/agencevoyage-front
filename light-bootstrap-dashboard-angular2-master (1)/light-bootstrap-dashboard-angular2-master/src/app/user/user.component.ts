@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.findAll();
+    // this.findAll();
   }
   findAll() {
     this.customerService.findAll().subscribe(data => { this.customers = data });

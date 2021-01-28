@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LocationService } from 'app/service/location.service';
+import {Location} from 'app/model/location'
 
-declare var $:any;
 
 @Component({
   selector: 'app-notifications',
@@ -8,18 +9,30 @@ declare var $:any;
   styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent implements OnInit {
-  public tableData1: any;
-
-  constructor() { }
+  locations: Location[];
+  location: Location = new Location();
+  constructor(private locationService : LocationService) { }
 
   ngOnInit() {
+    this.findAll();
   }
-  showNotification(){
-    this.tableData1 = {
-      headerRow: [ 'Location code','location name', 'location Type'],
-      dataRows: [
-          ['1', 'Dakota Rice', 'Niger']
-      ]
-  };
+  findAll() {
+    this.locationService.findAll().subscribe(data => { this.locations = data });
+  }
+  // getOneLocation(id){
+  //   this.userService.findOne(id).subscribe(data => )
+  //}
+  deleteLocation(location) {
+    this.locationService.delete(location.idLocation).subscribe(
+      () => { this.findAll() }
+    );
+  }
+
+  save() {
+    this.locationService.save(this.location).subscribe(
+      ()=>{this.findAll();
+      this.location = new Location();
+      }
+    )
   }
 }
