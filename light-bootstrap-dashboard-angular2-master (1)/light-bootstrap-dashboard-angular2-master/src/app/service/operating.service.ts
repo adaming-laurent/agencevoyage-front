@@ -19,6 +19,7 @@ export class OperatingService {
     return this.httpClient.post(this.baseURL, operating);
   }
   public deleteOperating(idOperating:number): Observable<any>{
+    // console.log("delete service in operation")
     return this.httpClient.delete(this.baseURL+"/"+idOperating);
   }
 }

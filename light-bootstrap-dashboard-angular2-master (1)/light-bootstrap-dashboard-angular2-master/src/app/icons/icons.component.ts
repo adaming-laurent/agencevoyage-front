@@ -18,7 +18,7 @@ export class IconsComponent implements OnInit {
   }
 
   findAllOperatings(){
-    this.operatingService.findAllOperatings().subscribe(data => {this.operatings = data; console.log("operatings:"+this.operatings)});
+    this.operatingService.findAllOperatings().subscribe(data => {this.operatings = data/* ; console.log("operatings:"+this.operatings) */});
     console.log(this.operatings);
   }
 
@@ -35,7 +35,7 @@ export class IconsComponent implements OnInit {
   }
 
   saveOperating() {
-    this.operatingService.saveOperating(this.operatingService).subscribe(
+    this.operatingService.saveOperating(this.operating).subscribe(
       () => {this.findAllOperatings();
       this.operating = new OperatingCompany();
     }
