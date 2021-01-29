@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Flight } from 'app/model/flight';
+import { Journey } from 'app/model/journey';
+import { RiverCruise } from 'app/model/riverCruise';
+import { TrainRide } from 'app/model/trainRide';
+import { FlightService } from 'app/service/flight.service';
+import { JourneyService } from 'app/service/journey.service';
 
 declare interface TableData {
     headerRow: string[];
@@ -11,22 +17,35 @@ declare interface TableData {
   styleUrls: ['./tables.component.css']
 })
 export class TablesComponent implements OnInit {
-    public tableData1: TableData;
+    journeys: Journey[];
+    journey: Journey = new Journey();
+    flights : Flight[];
+    flight : Flight = new Flight();
+    riverCruises : RiverCruise[];
+    riverCruise : RiverCruise = new RiverCruise();
+    trainRides : TrainRide[];
+    trainRide : TrainRide = new TrainRide();
 
-  constructor() { }
+  constructor(private journeyService : JourneyService) { }
 
-  ngOnInit() {
-      this.tableData1 = {
-          headerRow: [ 'Origin Location', 'Destination Location', 'Company', 'start date', 'End date', 'Details'],
-          dataRows: [
-              ['1', 'Dakota Rice', 'Niger', 'Oud-Turnhout', '$36,738', 'hhhh'],
-              ['2', 'Minerva Hooper', 'Curaçao', 'Sinaai-Waas', '$23,789'],
-              ['3', 'Sage Rodriguez', 'Netherlands', 'Baileux', '$56,142'],
-              ['4', 'Philip Chaney', 'Korea, South', 'Overland Park', '$38,735'],
-              ['5', 'Doris Greene', 'Malawi', 'Feldkirchen ', '$63,542'],
-              ['6', 'Mason Porter', 'Chile', 'Gloucester', '$78,615']
-          ]
-      };
+
+  ngOnInit(): void {
+    this.findAll();
+  }
+
+  findAll() {
+    this.journeyService.findAll().subscribe(data => { this.journeys = data });
+  }
+  deleteJourney(id:number) {
+    console.log("id="+id);
+    this.journeyService.delete(id).subscribe(
+      () => { this.findAll() }
+    );
+  }
+  saveJourney(){
+    this.journeyService.save(this.journey).subscribe(()=>{this.findAll();
+    this.journey = new Journey();
+    });
   }
 
 }
